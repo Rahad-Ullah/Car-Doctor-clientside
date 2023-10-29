@@ -1,11 +1,12 @@
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 const ServiceCard = ({service}) => {
-    const {title, img, price} = service;
+    const {_id, title, img, price} = service;
 
     return (
-    <div className="card bg-base-100 p-6 border rounded-lg hover:border-primary cursor-pointer group">
+    <Link to={`/check-out/${_id}`} className="card bg-base-100 p-6 border rounded-lg hover:border-primary cursor-pointer group">
         <figure className="">
             <img src={img} alt="" className="rounded-lg md:h-48 lg:h-40 xl:h-48 w-full"/>
         </figure>
@@ -16,7 +17,7 @@ const ServiceCard = ({service}) => {
                 <button className="text-xl font-semibold text-primary transform group-hover:translate-x-3 transition"><AiOutlineArrowRight></AiOutlineArrowRight></button>
             </div>
         </div>
-    </div>
+    </Link>
     );
 };
 
