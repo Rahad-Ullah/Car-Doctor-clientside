@@ -85,7 +85,7 @@ const Login = () => {
               <button className="btn btn-circle group"><FaLinkedinIn className="text-[#0A66C2] group-hover:text-primary"></FaLinkedinIn></button>
               <button className="btn btn-circle group"><FaGoogle className="text-red-600 group-hover:text-primary"></FaGoogle></button>
           </div>
-          <p className="text-[#737373] text-center text-sm mt-10">New to Car Doctor? <Link to={'/sign-up'} className="text-primary font-semibold">Sign Up</Link></p>
+          <p className="text-[#737373] text-center text-sm mt-10">New to Car Doctor? <Link to={'/sign-up'} className="text-primary font-semibold hover:btn-link">Sign Up</Link></p>
         </div>
       </div>
     </div>

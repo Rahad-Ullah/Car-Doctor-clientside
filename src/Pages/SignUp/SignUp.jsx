@@ -92,7 +92,7 @@ const SignUp = () => {
                 <button className="btn btn-circle group"><FaLinkedinIn className="text-[#0A66C2] group-hover:text-primary"></FaLinkedinIn></button>
                 <button className="btn btn-circle group"><FcGoogle className="text-[#3B5998] group-hover:text-primary"></FcGoogle></button>
             </div>
-            <p className="text-[#737373] text-center text-sm mt-10">Already have an account? <Link to={'/login'} className="text-primary font-semibold">Login</Link></p>
+            <p className="text-[#737373] text-center text-sm mt-10">Already have an account? <Link to={'/login'} className="text-primary font-semibold hover:btn-link">Login</Link></p>
           </div>
         </div>
     </div>
