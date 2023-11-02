@@ -29,6 +29,9 @@ const CheckOut = () => {
         axios.post('http://localhost:5000/orders', order)
         .then((result) => {
             console.log(result.data)
+            if(result.data.insertedId){
+                alert('Order placed successfully')
+            }
         }).catch((err) => {
             console.log(err)
         });

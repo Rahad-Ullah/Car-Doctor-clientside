@@ -1,20 +1,23 @@
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from '../../assets/images/login/login.svg'
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from 'sweetalert2'
+import axios from "axios";
 
 
 const Login = () => {
   const {signIn} = useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const handleLogin = (event) => {
     event.preventDefault()
     const form = event.target;
-    // const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+
 
     signIn(email, password)
     .then((result) => {
@@ -25,6 +28,17 @@ const Login = () => {
         icon: 'success',
         confirmButtonText: 'Ok'
       })
+      
+      // get access token
+      const user = { email };
+      axios.post(`http://localhost:5000/jwt`, user, {withCredentials: true})
+      .then(res => {
+        console.log(res.data)
+        if(res.data?.success){
+          navigate(location?.state || '/')
+        }
+      })
+      .catch(err => err)
     }).catch((err) => {
       console.log(err)
       Swal.fire({
