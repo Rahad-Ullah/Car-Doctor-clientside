@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
@@ -26,8 +27,23 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const unsubscribe =  onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = {email: userEmail}
             setUser(currentUser)
             setLoading(false)
+            // if user exist then issue a token
+            if(currentUser){
+                axios.post('https://car-doctor-serverside.vercel.app/jwt', loggedUser, {withCredentials: true})
+                .then(res => {
+                    console.log('token created response: ', res.data)
+                })
+            }
+            else{
+                axios.post('https://car-doctor-serverside.vercel.app/logout', loggedUser, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data)
+                })
+            }
         })
         return () => {
             return unsubscribe();

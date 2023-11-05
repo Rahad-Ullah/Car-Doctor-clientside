@@ -2,12 +2,14 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import singUpImg from '../../assets/images/login/login.svg'
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+// import { useContext } from "react";
+// import { AuthContext } from "../../providers/AuthProvider";
 import Swal from 'sweetalert2'
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext)
+    // const {createUser} = useContext(AuthContext)
+    const {createUser} = useAuth()  //? custom hook
     
     const handleSignUp = (event) => {
         event.preventDefault()

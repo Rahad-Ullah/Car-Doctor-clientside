@@ -1,14 +1,15 @@
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from '../../assets/images/login/login.svg'
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+// import { useContext } from "react";
+// import { AuthContext } from "../../providers/AuthProvider";
 import Swal from 'sweetalert2'
-import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext)
+  // const {signIn} = useContext(AuthContext)
+  const { signIn } = useAuth()   //? custom hook
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -22,24 +23,15 @@ const Login = () => {
     signIn(email, password)
     .then((result) => {
       console.log(result.user)
+      navigate(location?.state || '/')
       Swal.fire({
         title: 'Success!',
         text: 'Login successful',
         icon: 'success',
         confirmButtonText: 'Ok'
       })
-      
-      // get access token
-      const user = { email };
-      axios.post(`http://localhost:5000/jwt`, user, {withCredentials: true})
-      .then(res => {
-        console.log(res.data)
-        if(res.data?.success){
-          navigate(location?.state || '/')
-        }
-      })
-      .catch(err => err)
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err)
       Swal.fire({
         title: 'Error!',

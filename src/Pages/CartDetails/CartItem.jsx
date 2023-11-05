@@ -22,7 +22,7 @@ const CartItem = ({order, orders, setOrders}) => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/orders/${_id}`)
+                axios.delete(`https://car-doctor-serverside.vercel.app/orders/${_id}`)
                 .then(res => {
                     if(res.data.deletedCount){
                         const remaining = orders.filter(ord => ord._id !== _id)
@@ -40,7 +40,7 @@ const CartItem = ({order, orders, setOrders}) => {
 
     // Approve Order Products
     const handleApprove = () =>{
-        axios.patch(`http://localhost:5000/orders/${_id}`, {
+        axios.patch(`https://car-doctor-serverside.vercel.app/orders/${_id}`, {
             status: 'Approved'
         })
         .then(res => {

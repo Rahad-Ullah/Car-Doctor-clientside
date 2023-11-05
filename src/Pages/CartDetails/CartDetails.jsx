@@ -1,20 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import axios from "axios";
+// import axios from "axios";
 import CartItem from "./CartItem";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const CartDetails = () => {
     const {user} = useContext(AuthContext)
     const [orders, setOrders] = useState([])
+    const axiosSecure = useAxiosSecure()
     
-    const url = `http://localhost:5000/orders?email=${user?.email}`
+    const url = `/orders?email=${user?.email}`
     useEffect(() => {
-        axios.get(url, {withCredentials: true})
-        .then(res => {
-            setOrders(res.data)
-        })
+        // axios.get(url, {withCredentials: true})
+        // .then(res => {
+        //     setOrders(res.data)
+        // })
+        axiosSecure.get(url)
+        .then(res => setOrders(res.data))
     }
-    ,[url])
+    ,[url, axiosSecure])
     
     return (
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">

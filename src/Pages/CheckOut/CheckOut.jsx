@@ -26,7 +26,7 @@ const CheckOut = () => {
         }
         
         // send order to server
-        axios.post('http://localhost:5000/orders', order)
+        axios.post('https://car-doctor-serverside.vercel.app/orders', order)
         .then((result) => {
             console.log(result.data)
             if(result.data.insertedId){
