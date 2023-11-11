@@ -15,7 +15,7 @@ const CartDetails = () => {
         // .then(res => {
         //     setOrders(res.data)
         // })
-        axiosSecure.get(url)
+        axiosSecure(url)
         .then(res => setOrders(res.data))
     }
     ,[url, axiosSecure])

@@ -6,6 +6,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import CheckOut from "../Pages/CheckOut/CheckOut";
 import CartDetails from "../Pages/CartDetails/CartDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import axios from "axios";
+import { axiosSecure } from "../hooks/useAxiosSecure";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: '/check-out/:id',
         element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
-        loader: ({params}) => fetch(`https://car-doctor-serverside.vercel.app/services/${params.id}`)
+        loader: ({params}) => axiosSecure(`/services/${params.id}`)
       },
       {
         path: '/cart-details',
