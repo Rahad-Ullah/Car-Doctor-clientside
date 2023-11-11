@@ -42,15 +42,15 @@ const Services = () => {
                 <h4 className="text-xl text-primary font-bold mb-5">Service</h4>
                 <h2 className="text-4xl text-secondary font-bold">Our Service Area</h2>
                 <p className="py-5 text-light-dark max-w-lg mx-auto">the majority have suffered alteration in some form, by injected humour, or randomised words which don&apos;t look even slightly believable.</p>
-                <div className="flex justify-between items-center mt-8">
+                <div className="flex flex-col lg:flex-col justify-between items-center gap-4 mt-8">
                     <form onSubmit={handleSearch} className="flex gap-4">
                         <input type="text" className="input input-bordered" name="search"/>
                         <button className="btn btn-primary normal-case text-base">Search</button>
                     </form>
                     <div className="flex justify-center items-center gap-4">
                         <h4 className="font-semibold">Price Range: </h4>
-                        <input onChange={handleMin} type="text" placeholder="min" className="input input-bordered w-36"/>
-                        <input onChange={handleMax} type="text" placeholder="max" className="input input-bordered w-36"/>
+                        <input onChange={handleMin} type="text" placeholder="min" className="input input-bordered w-24 md:w-36"/>
+                        <input onChange={handleMax} type="text" placeholder="max" className="input input-bordered w-24 md:w-36"/>
                     </div>
                     <button
                         onClick={() => setAsc(!asc)}
